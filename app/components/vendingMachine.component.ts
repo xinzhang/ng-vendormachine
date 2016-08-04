@@ -13,8 +13,8 @@ export enum VendingMachineSize {
 class Cell {
     constructor(public product: Product){
     }
-    stock = Array<number>(3)
-    sold = Array<boolean>(false)
+    stock :number;
+    sold : boolean;
 }
 
 @Component({
@@ -23,29 +23,37 @@ class Cell {
     directives: []
 })
 export class VendingMachineComponent implements OnInit { 
-    paid = 0;
-    selectedCell = new Cell(new Init());
-    cells = Array<Cell>([])
+    paid:number = 0;
+    selectedCell: Cell = new Cell(new Init());
+    cells : Cell[] = [];
 
     acceptedCoins: Array<Coins.Coin> = [new Coins.Dime(), new Coins.Quarter(), 
         new Coins.Half(), new Coins.Dollar()]
-
-    function canPay():boolean = {
-        return this.paid - this.selectedCell().product.price >= 0)
+    
+    constructor(public useProductFactory = true) {
+        console.log('constructed');
     }
     
-    constructor(public useProductFactory = true) {}
-    
-    set size(givenSize: VendingMachineSize) {
-        this.cells([]);
-        
+    ngOnInit(): void {
+        this.setSize( VendingMachineSize.medium );   
+        console.log(this.cells.length);                     
+    }
+
+    setSize(givenSize: VendingMachineSize) : void {
+
         for (let index = 0; index < givenSize; index++) {
-            this.cells.push(new Cell(getVendingProduct()));            
+            this.cells.push(new Cell(getVendingProduct()));    
+            console.log('created new product');        
         };
     }
     
-    select = (cell: Cell): void => {
-        cell.sold(false);
-        this.selectedCell(cell);
+    canPay():boolean {
+        return (this.paid - this.selectedCell.product.price) >= 0 ;
     }
+
+    select(cell: Cell): void {
+        cell.sold = false;
+        this.selectedCell = cell;
+    }
+
 }

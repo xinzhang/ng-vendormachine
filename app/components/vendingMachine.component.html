@@ -1,10 +1,12 @@
-<div class="col-md-4 cell" data-bind="click: $parent.select, css: { selected: $parent.selectedCell().product === $data.product, sold: sold }">
-                    <div class="col-md-6 image">
-                        <img data-bind="attr: { src: product.category.getImageUrl(), alt: product.category.name }"/>
-                    </div>
-                    <div class="col-md-6 productInfo">
-                        <div data-bind="text: product.name"></div>
-                        <h4 data-bind="text: stock"></h3>
-                        <h3 data-bind="text: '$ ' + product.price"></h3>
-                    </div>
-                </div>
+<h1>machine</h1>
+<div class="col-md-4 cell" *ngFor='let cell of cells'>
+    <div class="col-md-6 image">
+        {{cell.product.category.getImageUrl()}}
+        {{cell.product.category.name}}
+    </div>
+    <div class="col-md-6 productInfo">
+        <div>{{cell.product.name}</div>
+        <h4>{{cell.stock}}</h3>
+        <h3>$ {{cell.product.price}}</h3>
+    </div>
+</div>

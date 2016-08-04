@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import {VendingMachineComponent} from './components/vendingMachine';
+import {CoinSlotComponent} from './components/coinSlot';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    templateUrl: 'app/app.component.html'
 })
-export class AppComponent { }
+export class AppComponent { 
+
+}

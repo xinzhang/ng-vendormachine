@@ -1,20 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 import * as Coins from "../services/coin"
 import { Product, Initial as Init, CocaCola} from "../services/product"
 import getVendingProduct from "../services/productFactory"
+import {Cell} from "../services/cell";
 
 export enum VendingMachineSize {
     small = 3,
     medium = 9,
     large = 12
-}
-
-class Cell {
-     constructor(public product: Product){
-     }
-     stock :number;
-     sold : boolean;
 }
 
 @Component({
@@ -23,38 +17,38 @@ class Cell {
     directives: []
 })
 export class VendingMachineComponent implements OnInit { 
-    paid:number = 0;
-    //selectedCell: Cell = new Cell(new Init());
+    @Output() 
+    cellChanged = new EventEmitter();
+
+    @Input()
+    selectedCell : Cell = null;
+
     cells : Cell[] = [];
 
-    //acceptedCoins: Array<Coins.Coin> = [new Coins.Dime(), new Coins.Quarter(), new Coins.Half(), new Coins.Dollar()]
-    
     constructor() {
-        console.log('constructed');
     }
     
     ngOnInit(): void {
-        console.log('component start');
-        this.setSize( VendingMachineSize.small );                        
+        this.setSize( VendingMachineSize.medium );                               
     }
 
     setSize(givenSize: VendingMachineSize) : void {
 
         for (let index = 0; index < givenSize; index++) {
-            //var product = getVendingProduct();
-            var p = new CocaCola();
+            var p = getVendingProduct();            
             this.cells.push(new Cell(p));    
             console.log('created new product');        
         };
     }
     
-    // canPay():boolean {
-    //     return (this.paid - this.selectedCell.product.price) >= 0 ;
-    // }
-
-    // select(cell: Cell): void {
-    //     cell.sold = false;
-    //     this.selectedCell = cell;
-    // }
+    select(cell: Cell): void {
+        console.log(cell.product.name + " selected");
+        cell.sold = false;        
+        this.selectedCell = cell;
+        console.log('selcted cell' + cell);
+        this.cellChanged.emit({
+            value: cell
+        });
+    }
 
 }

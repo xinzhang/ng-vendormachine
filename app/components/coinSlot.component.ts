@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as Coins from "../services/coin";
 import { Product, Initial as Init, CocaCola} from "../services/product";
 import getVendingProduct from "../services/productFactory";
@@ -12,10 +12,11 @@ import { Cell } from "../services/cell";
 export class CoinSlotComponent implements OnInit { 
     paid:number = 0;
     acceptedCoins: Array<Coins.Coin> = [new Coins.Dime(), new Coins.Quarter(), new Coins.Half(), new Coins.Dollar()]
+    
+    @Input() 
     selectedCell: Cell;
 
     constructor() {
-
     }
 
     ngOnInit():void {

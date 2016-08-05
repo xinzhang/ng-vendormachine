@@ -1,19 +1,19 @@
 <h1>test coin slot</h1>
 <h4>
     Paid: $
-    <span id="total" data-bind="text: paid"></span>
+    <span id="total">{{paid}}</span>
 </h4>
-<div data-bind="foreach: acceptedCoins">
-    <img data-bind="attr: { src: getImageUrl(), alt: value }, click: $parent.acceptCoin" />
+
+<div *ngFor='let c of acceptedCoins'>
+    <img src={{c.getImageUrl()}} alt="{{c.value}}" (click)="acceptCoin(c)" />
 </div>
 
-<h3 data-bind="with: selectedCell">
-    <div data-bind="text: product.name"></div>
+<h3>
+    <div>{{selectedCell.product.name}}</div>
     <div>
         $
-        <span data-bind="text: product.price"></span>
-    </div>
+        <span>{{selectedCell.product.price}}</span>
     </div>
 </h3>
 
-<button class="btn btn-primary payButton" data-bind="enable: canPay, click: pay">Pay</button>
+<button class="btn btn-primary payButton" [disabled]="canPay()" (click)="pay()">Pay</button>

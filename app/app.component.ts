@@ -14,8 +14,14 @@ import { Cell } from "./services/cell";
 export class AppComponent { 
     public initSelection:Cell = new Cell(null);
 
-    vendorMachineCellChanged($event) {
-        console.log("reselected " + $event.value.product.name);
+    vendorMachineCellChanged($event:any) {
+        console.log("cell selected " + $event.value.product.name);
         this.initSelection = $event.value;
     }
+
+    paid($event:any) {
+        console.log("paid " + $event.product.name);
+        this.initSelection.sold = true;
+    }
+
 }

@@ -16,6 +16,9 @@ export class CoinSlotComponent implements OnInit {
     @Input() 
     selectedCell: Cell;
 
+    @Output()
+    payEvent = new EventEmitter();
+
     constructor() {
     }
 
@@ -32,7 +35,8 @@ export class CoinSlotComponent implements OnInit {
     }
 
     pay(): void {
-        this.paid -= this.selectedCell.product.price;
+        this.paid = Math.round(this.paid - this.selectedCell.product.price);
+        this.payEvent.emit(this.selectedCell);
     }
 
 }

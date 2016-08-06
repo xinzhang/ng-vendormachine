@@ -5,8 +5,8 @@
     <span id="total">{{paid}}</span>
 </h4>
 
-<div *ngFor='let c of acceptedCoins'>
-    <img src={{c.getImageUrl()}} alt="{{c.value}}" (click)="acceptCoin(c)" />
+<div>
+    <img *ngFor='let c of acceptedCoins' src={{c.getImageUrl()}} alt="{{c.value}}" (click)="acceptCoin(c)" />
 </div>
 
 <h3>

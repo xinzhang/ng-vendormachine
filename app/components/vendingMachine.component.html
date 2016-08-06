@@ -1,6 +1,6 @@
 <h1>machine - size {{cells.length}}</h1>
 <div class="col-md-4 cell" *ngFor='let cell of cells'
-    (click)="select(cell)" [ngClass]="{'selected': selectedCell !=null && selectedCell.product == cell.product}" >
+    (click)="select(cell)" [ngClass]="{'selected': selectedCell !=null && selectedCell.product == cell.product, 'sold':cell.sold}" >
     
     <div class="col-md-6 image">
         <img src={{cell.product.category.getImageUrl()}} alt={{cell.product.category.name}}/>        

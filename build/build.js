@@ -25047,7 +25047,7 @@ $__System.registerDynamic("d", ["3", "b", "e"], true, function($__require, expor
       this.cells = [];
     }
     VendingMachineComponent.prototype.ngOnInit = function() {
-      this.setSize(VendingMachineSize.medium);
+      this.setSize(VendingMachineSize.large);
     };
     VendingMachineComponent.prototype.setSize = function(givenSize) {
       for (var index = 0; index < givenSize; index++) {

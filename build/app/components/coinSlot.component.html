@@ -1,0 +1,20 @@
+<h1>test coin slot</h1>
+
+<h4>
+    Paid: $
+    <span id="total">{{paid}}</span>
+</h4>
+
+<div>
+    <img *ngFor='let c of acceptedCoins' src={{c.getImageUrl()}} alt="{{c.value}}" (click)="acceptCoin(c)" />
+</div>
+
+<h3>
+    <div>{{selectedCell.product.name}}</div>
+    <div>
+        $
+        <span>{{selectedCell.product.price}}</span>
+    </div>
+</h3>
+
+<button class="btn btn-primary payButton" [disabled]="canPay()" (click)="pay()">Pay</button>

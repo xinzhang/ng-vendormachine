@@ -1,0 +1,13 @@
+<h1>machine - size {{cells.length}}</h1>
+<div class="col-md-4 cell" *ngFor='let cell of cells'
+    (click)="select(cell)" [ngClass]="{'selected': selectedCell !=null && selectedCell.product == cell.product, 'sold':cell.sold}" >
+    
+    <div class="col-md-6 image">
+        <img src={{cell.product.category.getImageUrl()}} alt={{cell.product.category.name}}/>        
+    </div>
+    <div class="col-md-6 productInfo">
+        <div>{{cell.product.name}}</div>
+        <h3>{{cell.stock}}</h3>
+        <h3>$ {{cell.product.price}}</h3>
+    </div>
+</div>

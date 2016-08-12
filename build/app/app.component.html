@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Vending machine simulation</h1>
+    <div class="col-md-8 machine">
+        <vending-machine [selectedCell]="initSelection" (cellChanged)="vendorMachineCellChanged($event)"></vending-machine>
+    </div>
+    <div class="col-md-4">
+        <coin-slot [selectedCell]="initSelection" (payEvent)="paid($event)"></coin-slot>
+    </div>
+</div>

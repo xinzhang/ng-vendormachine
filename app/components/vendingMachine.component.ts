@@ -29,7 +29,7 @@ export class VendingMachineComponent implements OnInit {
     }
     
     ngOnInit(): void {
-        this.setSize( VendingMachineSize.large );                               
+        this.setSize( VendingMachineSize.medium );                               
     }
 
     setSize(givenSize: VendingMachineSize) : void {
